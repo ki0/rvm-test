@@ -23,5 +23,5 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 \curl -sSL https://get.rvm.io | bash -s stable --rails >&/dev/null
 rvm --default use 2.1.1 >&/dev/null
 sudo apt-get -y -qq install  postgresql-client-9.4  libpq-dev postgresql-common ruby-pg >&/dev/null
-cd /var/www/deployed/hello; bundle install; rake db:migrate; rake db:setup >&/dev/null
-cd /var/www/deployed/hello; rails server -d -b 0.0.0.0 -e development
+cd /var/www/deployed/hello; /etc/profile.d/rvm.sh; bundle install; rake db:migrate; rake db:setup 
+cd /var/www/deployed/hello; rails server -d -b 0.0.0.0 -e development >/dev/null

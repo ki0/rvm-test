@@ -64,5 +64,7 @@ vagrant plugin install vagrant-hosts
 vagrant up
 ```
 
+Una vez levantadas las máquinas virtuales, vamos a nuestro explorador y en la url http://localhost:3000, deberíamos ver nuestro mensaje.
+
 
 
