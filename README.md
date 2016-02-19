@@ -9,22 +9,26 @@ Para generar nuestro "hello world" primero tenemos que crearnos un controlador:
 cd deployed/hello/; rails generate controller welcome
 
 Editamos el fichero app/controllers/welcome_controller.rb y añadimos esto:
+```
 def home
     @greeting = "Hello P161!"
 end
-
+```
 Ahora creamos una vista, editar app/views/welcome/home.html.erb
+```
 <h1><%= @greeting %></h1>
-
+```
 Por último editamos la fichero de rutas, config/routes.rb, y añadimos
+```
 root to: 'welcome#home'
-
+```
 Asegurarse que el directorio app/views/layouts no exitas.
+```
 rm -rf app/views/layouts
-
+```
 Como hemos dicho el despligue será automático porque el directorio esta exportado por NFS.
 Finalmente editamos el fichero config/database.yml, que tiene que quedar así:
-
+```
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -50,12 +54,14 @@ production:
   username: postgres
   host: db.dev.rvm-test.es
   port: 5432
-
+```
 
 Antes de levantar las máquinas virtuales necesitamos tener dos plugins de vagrant:
+```
 vagrant plugin install vagrant-vbguest
 vagrant plugin install vagrant-hosts
 vagrant up
+```
 
 
 
