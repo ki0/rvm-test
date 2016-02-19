@@ -1,0 +1,30 @@
+{
+  "nodes": {
+    "db.dev.rvm-test.es": {
+      ":box": "debian/jessie64",
+      ":ip": "192.168.35.5",
+      "ports": [
+          { ":host": "5432", ":guest": "5432" }
+      ],
+      ":memory": 2048,
+      "bootstraps": [
+          "scripts/provision_db.sh"
+      ],
+      "synced_folders": []
+    },
+    "app.dev.rvm-test.es": {
+      ":box": "debian/jessie64",
+      ":ip": "192.168.35.10",
+      "ports": [
+          { ":host": "3000", ":guest": "3000" }
+      ],
+      ":memory": 1024,
+      "bootstraps": [
+          "scripts/provision_app.sh"
+      ],
+      "synced_folders": [
+          { "origin": ".", "destination": "/var/www/" }
+      ]
+    }
+  }
+}
