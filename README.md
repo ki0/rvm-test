@@ -1,13 +1,14 @@
 # rvm-test
 
 Antes de levantar las máquinas virtuales debemos generar los ficheros de nuestra aplicación para sistemas Debiann/Ubuntu:
-
+```
 scripts/init.sh
-
+```
 Esto instalará todo lo necesarios para usar Ruby on Rails y generará la estructura de directorios de la aplicación en el directorio deployed, los vagrant tienen el directorio completo exportado por NFS a /var/www en la máquina de la aplicación, es decir, que los despliegues serán automáticos.
 Para generar nuestro "hello world" primero tenemos que crearnos un controlador:
+```
 cd deployed/hello/; rails generate controller welcome
-
+```
 Editamos el fichero app/controllers/welcome_controller.rb y añadimos esto:
 ```
 def home
