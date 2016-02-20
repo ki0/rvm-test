@@ -30,7 +30,7 @@ Vagrant.configure(2) do |config|
 
       bootstraps = node_values['bootstraps']
       bootstraps.each do |bootstrap|
-        config.vm.provision "shell", path: bootstrap
+        config.vm.provision "shell", path: bootstrap, privileged: false
       end
       config.vm.provision "shell", inline: <<-SHELL
         echo "Copying local id_rsa SSH Key to VM auth_keys for auth purposes (login into VM included)..."

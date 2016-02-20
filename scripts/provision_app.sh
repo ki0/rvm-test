@@ -11,17 +11,30 @@
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: Dr. Fritz Mehner (fgm), mehner.fritz@web.de
+#        AUTHOR: Fran Rodriguez
 #  ORGANIZATION: 
 #       CREATED: 18/02/2016 13:55
 #      REVISION:  ---
 #===============================================================================
 
-set -o nounset                              # Treat unset variables as an error
+#set -o nounset                              # Treat unset variables as an error
 
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 >&/dev/null
-\curl -sSL https://get.rvm.io | bash -s stable --rails >&/dev/null
-rvm --default use 2.1.1 >&/dev/null
-sudo apt-get -y -qq install  postgresql-client-9.4  libpq-dev postgresql-common ruby-pg >&/dev/null
-cd /var/www/deployed/hello; /etc/profile.d/rvm.sh; bundle install; rake db:migrate; rake db:setup 
-cd /var/www/deployed/hello; rails server -d -b 0.0.0.0 -e development >/dev/null
+APP_PATH=/var/www/deployed/hello
+
+sudo apt-get -y -qqq install  postgresql-client-9.4  libpq-dev postgresql-common nodejs ruby-pg  >&/dev/null
+gpg --list-keys | grep -q D39DC0E3
+if [ $? -eq 1 ]; then
+    \curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+fi
+
+if [ ! -e $HOME/.rvm/bin/rvm ]; then
+    \curl -sSL https://get.rvm.io | bash -s stable >&/dev/null
+    source $HOME/.rvm/scripts/rvm
+    rvm  use --default --install 2.1.1 >&/dev/null 
+    gem install rails bundle pg >&/dev/null
+fi
+
+cd $APP_PATH; bundle install; rake db:create; rake db:migrate; rake db:setup 
+if [ ! -e $APP_PATH/tmp ]; then
+    cd $APP_PATH; rails server -d -b 0.0.0.0 -e development 
+fi

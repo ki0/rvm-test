@@ -11,7 +11,7 @@
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: Dr. Fritz Mehner (fgm), mehner.fritz@web.de
+#        AUTHOR: Fran Rodriguez
 #  ORGANIZATION: 
 #       CREATED: 18/02/2016 13:55
 #      REVISION:  ---
