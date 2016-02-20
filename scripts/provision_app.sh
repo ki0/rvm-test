@@ -35,6 +35,9 @@ if [ ! -e $HOME/.rvm/bin/rvm ]; then
 fi
 
 cd $APP_PATH; bundle install; rake db:create; rake db:migrate; rake db:setup 
-if [ ! -e $APP_PATH/tmp ]; then
+if [ -e $APP_PATH/tmp/pids/server.pid ]; then
+    kill -9 $(cat $APP_PATH/tmp/pids/server.pid) && rm -f $APP_PATH/tmp/pids/server.pid 
+    cd $APP_PATH; rails server -d -b 0.0.0.0 -e development 
+else
     cd $APP_PATH; rails server -d -b 0.0.0.0 -e development 
 fi
