@@ -1,3 +1,11 @@
+unless Vagrant.has_plugin?("vagrant-vbguest")
+  raise 'Vbguest plugin is not installed!'
+end
+
+unless Vagrant.has_plugin?("vagrant-hosts")
+  raise 'Hosts plugin is not installed!'
+end
+
 nodes_config = (JSON.parse(File.read("nodes.json")))['nodes']
 id_rsa_ssh_key_pub = File.read(File.join(Dir.home, ".ssh", "id_rsa.pub"))
 Vagrant.configure(2) do |config|
